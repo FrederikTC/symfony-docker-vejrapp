@@ -21,7 +21,6 @@ class AppFetchWeatherDataCommand extends Command
 
     public function __construct(HttpClientInterface $httpClient)
     {
-        // Best practice is to call the parent constructor
         parent::__construct();
 
         $this->httpClient = $httpClient;
@@ -38,13 +37,12 @@ class AppFetchWeatherDataCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $arg1 = $input->getArgument('arg1');
-        $stationId = 'yourStationIdHere'; // Ensure you replace this with the actual station ID you intend to query.
+        $stationId = '';
 
         if ($arg1) {
             $io->note(sprintf('You passed an argument: %s', $arg1));
         }
 
-        // Fetch weather data from DMI API
         $response = $this->httpClient->request('GET', 'https://dmigw.govcloud.dk/v2/metObs/collections/observation/items', [
             'query' => [
                 'stationId' => $stationId,

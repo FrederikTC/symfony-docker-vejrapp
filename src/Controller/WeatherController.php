@@ -58,13 +58,10 @@ class WeatherController extends AbstractController
                 $data = json_decode($content, true);
                 $allData[$parameterId] = $data;
             } else {
-                // Handle errors or unexpected status codes for each parameter
                 $allData[$parameterId] = "Failed fetching API data for parameter $parameterId";
             }
         }
     
-        // Combine all data into a single response
-        // Note: This example simply returns the raw combined data. You may want to process or format this data further.
         return new Response(json_encode($allData), Response::HTTP_OK, ['Content-Type' => 'application/json']);
     }
 }
